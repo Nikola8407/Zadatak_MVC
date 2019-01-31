@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TestZadatak2.Models.ClassModel>
+
+
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Prikaz</title>
+
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <h1 align="center">Test zadatak</h1>
+            <table style="width:100%">
+                <tr>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Adresa</th>
+                    <th>Neto</th>
+                    <th>Bruto</th>
+                    <th>Radnik(PIO)</th>
+                    <th>Radnik (Zravstveno O.)</th>
+                    <th>Radnik (Nezaposlenost)</th>
+                    <th>Poslodavac (PIO)</th>
+                    <th>Poslodavac (Zravstveno O.)</th>
+                </tr>
+                @foreach (var radnik in Model)
+                {
+                    <tr>
+                        <td>@radnik.Ime</td>
+                        <td>@radnik.Prezime</td>
+                        <td>@radnik.Adresa</td>
+                        <td>@radnik.Neto</td>
+                        <td>@radnik.Bruto</td>
+                        <td>@radnik.Radnik_PIO</td>
+                        <td>@radnik.Radnik_ZO</td>
+                        <td>@radnik.Radnik_Nezaposlenost</td>
+                        <td>@radnik.Poslodavac_PIO</td>
+                        <td>@radnik.Poslodavac_ZO</td>
+                    </tr>
+                }
+            </table>
+            @Html.ActionLink("Pocetna", "Index")
+
+        </center>
+
+
+        </body>
+    </html>

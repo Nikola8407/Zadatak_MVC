@@ -1,0 +1,118 @@
+﻿@model TestZadatak2.Models.ClassModel
+@*IEnumerable<TestZadatak2.Models.ClassModel>*@
+    @{
+        Layout = null;
+        ViewBag.Title = "Home";
+
+    }
+
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Pocetna</title>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script>
+            function Izracunaj_Bruto()
+            {
+                var neto = document.getElementById('neto').value;
+                var bruto_iz = (neto - (15000 * 0.1)) / 0.701;
+                document.getElementById('Bruto').value = bruto_iz;
+                $("#Bruto").val(bruto_iz.toFixed(2));
+            }
+        </script>
+        
+        <style>
+            .fr {
+                border: 1px solid #AAAAAA;
+                width: 300px;
+                margin: 0 auto;
+                background-color: lightblue;
+                padding-left: 10px;
+            }
+            .tb{
+                height: 20px;
+                font-size: 16px;
+            }
+            .button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin:3px;
+            }            
+
+        </style>
+    </head>
+    <body>
+        
+        <h1 align="center">Test zadatak</h1>
+        <form action="~/Default/Sacuvaj" method="post">
+            
+            <div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="fr">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @class = "tb" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @class = "tb" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Adresa, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Adresa, new { style = "width: 192px;font-size: 16px;", @cols = 35, @rows = 3 })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Neto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Neto, new { htmlAttributes = new { style = "width: 100px;", @class = "tb", id = "neto" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Bruto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Bruto, new { htmlAttributes = new { style = "width: 100px;", @class = "tb", @readonly = "readonly", disabled = "true", id = "Bruto" } })<input type="button" value="Izracunaj Bruto" onclick="Izracunaj_Bruto()" class="button" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Sacuvaj" class="button" />@Html.ActionLink("Prikaz", "Prikaz")
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </form>
+
+    </body>
+</html>
